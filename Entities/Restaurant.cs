@@ -18,6 +18,6 @@ namespace Restaurant_API.Entities
         public int AddressId { get; set; }
         public virtual Address Address { get; set; }
 
-        public virtual List<Dish> DishesContactEmail { get; set; }
+        public virtual List<Dish> Dishes { get; set; }
     }
 }

@@ -1,10 +1,18 @@
-﻿namespace Restaurant_API.Entities
+﻿
+
+using System.ComponentModel.DataAnnotations;
+
+namespace Restaurant_API.Entities
 {
     public class Address
     {
         public int Id { get; set; }
+        [Required]
+        [MaxLength(50)]
         public string City { get; set; }
-        public int Street { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string Street { get; set; }
         public string PostalCode { get; set; }
         public virtual Restaurant Restaurant{ get; set; }
     }
