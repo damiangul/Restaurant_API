@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API\\Restaurant_API.csproj": {}
+    "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API\\Restaurant_API.csproj": {
+    "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API\\Restaurant_API.csproj",
+        "projectUniqueName": "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API.csproj",
         "projectName": "Restaurant_API",
-        "projectPath": "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API\\Restaurant_API.csproj",
+        "projectPath": "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API.csproj",
         "packagesPath": "C:\\Users\\damia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API\\obj\\",
+        "outputPath": "C:\\Users\\damia\\Desktop\\Restaurant_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\damia\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.8, )"
