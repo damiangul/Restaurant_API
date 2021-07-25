@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Restaurant_API.Entities;
 
 namespace Restaurant_API
 {
@@ -9,5 +10,6 @@ namespace Restaurant_API
         RestaurantDto GetById(int id);
 
         bool Delete(int id);
+        bool UpdateRestaurant(int id, RestaurantUpdateDto restaurantUpdateDto);
     }
 }
