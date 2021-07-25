@@ -10,13 +10,11 @@ namespace Restaurant_API
     [Route("api/restaurant")]
     public class RestaurantController : ControllerBase
     {
-        private readonly RestaurantDbContext _dbContext;
-        private readonly IMapper _mapper;
+        private readonly IRestaurantService _restaurantService;
 
-        public RestaurantController(RestaurantDbContext dbContext, IMapper mapper)
+        public RestaurantController(IRestaurantService restaurantService)
         {
-            _dbContext = dbContext;
-            _mapper = mapper;
+            _restaurantService = restaurantService;
         }
 
         [HttpPost]
@@ -27,19 +25,15 @@ namespace Restaurant_API
                 return BadRequest(ModelState);
             }
 
-            var restaurant = _mapper.Map<Restaurant>(dto);
-            _dbContext.Restaurants.Add(restaurant);
-            _dbContext.SaveChanges();
+            int Id = _restaurantService.Create(dto);
 
-            return Created($"/api/restaurant/{restaurant.Id}", null);
+            return Created($"/api/restaurant/{Id}", null);
         }
         
         [HttpGet]
         public ActionResult<IEnumerable<RestaurantDto>> GetAll()
         {
-            var restaurants = _dbContext.Restaurants.Include(r => r.Address).Include(r => r.Dishes).ToList();
-
-            var restaurantsDtos = _mapper.Map<List<RestaurantDto>>(restaurants);
+            var restaurantsDtos = _restaurantService.GetAll();
 
             return Ok(restaurantsDtos);
         }
@@ -47,14 +41,12 @@ namespace Restaurant_API
         [HttpGet("{id}")]
         public ActionResult<RestaurantDto> Get([FromRoute] int id)
         {
-            var restaurant = _dbContext.Restaurants.Include(r => r.Address).Include(r => r.Dishes).FirstOrDefault(r => r.Id == id);
+            var restaurantDto = _restaurantService.GetById(id);
 
-            if(restaurant is null)
+            if(restaurantDto is null)
             {
                 return NotFound();
             }
-
-            var restaurantDto = _mapper.Map<RestaurantDto>(restaurant);
 
             return Ok(restaurantDto);
         }
