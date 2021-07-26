@@ -112,3 +112,7 @@ C:\Users\damia\Desktop\Restaurant_API\obj\Debug\net5.0\Restaurant_API.pdb
 C:\Users\damia\Desktop\Restaurant_API\obj\Debug\net5.0\Restaurant_API.genruntimeconfig.cache
 C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\nlog.config
+C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\NLog.dll
+C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\NLog.Extensions.Logging.dll
+C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\NLog.Web.AspNetCore.dll
