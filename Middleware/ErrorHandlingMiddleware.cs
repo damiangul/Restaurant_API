@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Restaurant_API.Exceptions;
 
-namespace Restaurant_API
+namespace Restaurant_API.Middleware
 {
     public class ErrorHandlingMiddleware : IMiddleware
     {
@@ -17,6 +18,11 @@ namespace Restaurant_API
             try
             {
                 await next.Invoke(context);
+            }
+            catch (NotFoundException nft)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(nft.Message);
             }
             catch (System.Exception e) 
             {

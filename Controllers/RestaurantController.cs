@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Restaurant_API.Entities;
 
-namespace Restaurant_API 
+namespace Restaurant_API
 {
     [Route("api/restaurant")]
+    //Ten atrybut pozwala automatycznie na walidacje modelu. Nie potrzeba już w metodach robić sprawdzania poprawności wpisanych danych.
+    [ApiController]
     public class RestaurantController : ControllerBase
     {
         private readonly IRestaurantService _restaurantService;
@@ -20,13 +22,11 @@ namespace Restaurant_API
         [HttpPut("{id}")]
         public ActionResult UpdateRestaurant([FromRoute] int id, [FromBody] RestaurantUpdateDto restaurantUpdateDto)
         {
-            if(!ModelState.IsValid)
-                return BadRequest(ModelState);
+            //[ApiController] załatwia sprawę
+            // if(!ModelState.IsValid)
+            //     return BadRequest(ModelState);
 
-            var isUpdated = _restaurantService.UpdateRestaurant(id, restaurantUpdateDto);
-
-            if(!isUpdated)
-                return NotFound();
+            _restaurantService.UpdateRestaurant(id, restaurantUpdateDto);
 
             return Ok();
         }
@@ -34,21 +34,19 @@ namespace Restaurant_API
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
-            var isDeleted = _restaurantService.Delete(id);
+            _restaurantService.Delete(id);
 
-            if(!isDeleted)
-                return NotFound();
-            
             return NoContent();
         }
 
         [HttpPost]
         public ActionResult CreateRestaurant([FromBody] CreateRestaurantDto dto)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //[ApiController] załatwia sprawę
+            // if(!ModelState.IsValid)
+            // {
+            //     return BadRequest(ModelState);
+            // }
 
             int Id = _restaurantService.Create(dto);
 
@@ -67,11 +65,6 @@ namespace Restaurant_API
         public ActionResult<RestaurantDto> Get([FromRoute] int id)
         {
             var restaurantDto = _restaurantService.GetById(id);
-
-            if(restaurantDto is null)
-            {
-                return NotFound();
-            }
 
             return Ok(restaurantDto);
         }
