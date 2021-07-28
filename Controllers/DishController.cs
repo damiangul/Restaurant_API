@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant_API.Models;
 using Restaurant_API.Services;
@@ -20,6 +21,22 @@ namespace Restaurant_API.Controllers
             var dishId = _service.Create(restaurantId, dto);
 
             return Created($"api/restaurant/{restaurantId}/dish/{dishId}", null);
+        }
+
+        [HttpGet("{dishId}")]
+        public ActionResult<DishDto> Get([FromRoute] int restaurantId, [FromRoute] int dishId)
+        {
+            DishDto dish = _service.GetById(restaurantId, dishId);
+
+            return Ok(dish);
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<DishDto>> GetAll([FromRoute] int restaurantId)
+        {
+            var result = _service.GetAll(restaurantId);
+
+            return Ok(result);
         }
     }
 }
