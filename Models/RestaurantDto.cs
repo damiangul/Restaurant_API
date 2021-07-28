@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Restaurant_API.Entities;
 
-namespace Restaurant_API
+namespace Restaurant_API.Models
 {
 	public class RestaurantDto
 	{

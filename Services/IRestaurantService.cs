@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using Restaurant_API.Entities;
+using Restaurant_API.Models;
 
-namespace Restaurant_API
+namespace Restaurant_API.Services
 {
     public interface IRestaurantService
     {

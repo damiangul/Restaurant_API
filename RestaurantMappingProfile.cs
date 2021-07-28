@@ -1,5 +1,6 @@
 using AutoMapper;
 using Restaurant_API.Entities;
+using Restaurant_API.Models;
 
 namespace Restaurant_API
 {

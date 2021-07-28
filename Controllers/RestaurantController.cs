@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Restaurant_API.Entities;
+using Restaurant_API.Models;
+using Restaurant_API.Services;
 
-namespace Restaurant_API
+namespace Restaurant_API.Controllers
 {
     [Route("api/restaurant")]
     //Ten atrybut pozwala automatycznie na walidacje modelu. Nie potrzeba już w metodach robić sprawdzania poprawności wpisanych danych.

@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Restaurant_API.Entities;
 using Restaurant_API.Exceptions;
+using Restaurant_API.Models;
 
-namespace Restaurant_API
+namespace Restaurant_API.Services
 {
     public class RestaurantService : IRestaurantService
     {
