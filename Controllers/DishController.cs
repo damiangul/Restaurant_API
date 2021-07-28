@@ -19,7 +19,7 @@ namespace Restaurant_API.Controllers
         {
             var dishId = _service.Create(restaurantId, dto);
 
-            return Created($"api/{restaurantId}/dish/{dishId}", null);
+            return Created($"api/restaurant/{restaurantId}/dish/{dishId}", null);
         }
     }
 }
