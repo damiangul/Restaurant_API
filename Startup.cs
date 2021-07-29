@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Restaurant_API.Entities;
 using Restaurant_API.Middleware;
 using Restaurant_API.Models;
@@ -17,6 +18,7 @@ using Restaurant_API.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Restaurant_API
@@ -33,6 +35,29 @@ namespace Restaurant_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var authenticationSettings = new AuthenticationSettings();
+            Configuration.GetSection("Authentication").Bind(authenticationSettings);
+            services.AddAuthentication(option => {
+                option.DefaultAuthenticateScheme = "Bearer";
+                option.DefaultScheme = "Bearer";
+                option.DefaultChallengeScheme = "Bearer";
+            }).AddJwtBearer(cfg => {
+                //Nie wymuszamy logowania tylko przez protokół HTTPS
+                cfg.RequireHttpsMetadata = false;
+                //Czy token powinien zostać zapisany po stronie serwera do celów autentykacji
+                cfg.SaveToken = true;
+                //Parametry walidacji. Sprawdzenie czy token wysłany przez klienta jest zgodny z tym co wie serwer.
+                cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    //Wydawca danego tokenu.
+                    ValidIssuer = authenticationSettings.JwtIssuer,
+                    //Jakie podmioty mogą używać tego tokenu. Jest to samo, ponieważ sami generujemy dane tokeny i tylko my będziemy mogli ich używać.
+                    ValidAudience = authenticationSettings.JwtIssuer,
+                    //Klucz prywatny.
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey))
+                };
+            });
+
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<RestaurantDbContext>();
             services.AddScoped<RestaurantSeeder>();
@@ -60,6 +85,8 @@ namespace Restaurant_API
             app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseMiddleware<RequestTimeMiddleware>();
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
