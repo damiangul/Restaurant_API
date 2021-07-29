@@ -19,6 +19,11 @@ namespace Restaurant_API.Middleware
             {
                 await next.Invoke(context);
             }
+            catch (BadRequestException bre)
+            {
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsync(bre.Message);
+            }
             catch (NotFoundException nft)
             {
                 context.Response.StatusCode = 404;
