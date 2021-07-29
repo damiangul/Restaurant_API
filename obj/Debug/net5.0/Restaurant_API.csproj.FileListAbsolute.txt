@@ -121,3 +121,6 @@ C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Sw
 C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\damia\Desktop\Restaurant_API\obj\Debug\net5.0\Restaurant_API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Users\damia\Desktop\Restaurant_API\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll

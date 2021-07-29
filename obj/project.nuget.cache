@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "IananXInl1J4lreUMVn4F4QJZsxV5gLxK38jxtJgvnLFIW1GlrHDr64+yfBoQ0k4HmwgBzCUU2k8WBEaXzw08Q==",
+  "dgSpecHash": "wxTQJQK99ieMktPLmWoI3ll0cV+qg2aqiWi9jtoV0r1BmrCma1J/hzoBP18RmuHgDqKI4ufxHWlbvonlBg7+9Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\damia\\Desktop\\Restaurant_API\\Restaurant_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\damia\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\fluentvalidation\\10.3.0\\fluentvalidation.10.3.0.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.0\\fluentvalidation.aspnetcore.10.3.0.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.0\\fluentvalidation.dependencyinjectionextensions.10.3.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

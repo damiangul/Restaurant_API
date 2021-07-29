@@ -16,6 +16,8 @@ namespace Restaurant_API.Services
         }
         public void RegisterUser(RegisterUserDto dto)
         {
+            
+
             var newUser = new User()
             {
                 Email = dto.Email,
