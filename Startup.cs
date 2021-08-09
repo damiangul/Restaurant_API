@@ -59,6 +59,11 @@ namespace Restaurant_API
                 };
             });
 
+            //Customowa polityka. Dostep maja tylko uzytkownicy z polski i niemiec. [Authorize(Policy = "HasNationality")]
+            services.AddAuthorization(options => {
+                options.AddPolicy("HasNationality", builder => builder.RequireClaim("Nationality", "German", "Polish"));
+            });
+
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<RestaurantDbContext>();
             services.AddScoped<RestaurantSeeder>();
@@ -87,7 +92,7 @@ namespace Restaurant_API
 
             app.UseMiddleware<RequestTimeMiddleware>();
 
-            app.UseAuthentication();
+            
 
             app.UseHttpsRedirection();
 
@@ -97,6 +102,9 @@ namespace Restaurant_API
             });
 
             app.UseRouting();
+            app.UseAuthentication();
+            //Wazne jest aby tutaj wywołać. Miedzy tymi dwoma middleware autoryzujemy uzytkowników.
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

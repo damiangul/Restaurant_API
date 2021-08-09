@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant_API.Models;
 using Restaurant_API.Services;
@@ -8,6 +9,7 @@ namespace Restaurant_API.Controllers
     [Route("api/restaurant")]
     //Ten atrybut pozwala automatycznie na walidacje modelu. Nie potrzeba już w metodach robić sprawdzania poprawności wpisanych danych.
     [ApiController]
+    [Authorize]
     public class RestaurantController : ControllerBase
     {
         private readonly IRestaurantService _restaurantService;
@@ -38,6 +40,7 @@ namespace Restaurant_API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
         public ActionResult CreateRestaurant([FromBody] CreateRestaurantDto dto)
         {
             //[ApiController] załatwia sprawę
@@ -52,6 +55,7 @@ namespace Restaurant_API.Controllers
         }
         
         [HttpGet]
+        [Authorize(Policy = "HasNationality")]
         public ActionResult<IEnumerable<RestaurantDto>> GetAll()
         {
             
@@ -61,6 +65,8 @@ namespace Restaurant_API.Controllers
         }
 
         [HttpGet("{id}")]
+        //Akcja zezwala na zapytania bez nagłówka autoryzacji
+        [AllowAnonymous]
         public ActionResult<RestaurantDto> Get([FromRoute] int id)
         {
             var restaurantDto = _restaurantService.GetById(id);
