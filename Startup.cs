@@ -1,5 +1,6 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Restaurant_API.Authorization;
 using Restaurant_API.Entities;
 using Restaurant_API.Middleware;
 using Restaurant_API.Models;
@@ -62,7 +64,10 @@ namespace Restaurant_API
             //Customowa polityka. Dostep maja tylko uzytkownicy z polski i niemiec. [Authorize(Policy = "HasNationality")]
             services.AddAuthorization(options => {
                 options.AddPolicy("HasNationality", builder => builder.RequireClaim("Nationality", "German", "Polish"));
+                options.AddPolicy("Atleast20", builder => builder.AddRequirements(new MinimumAgeRequirement(20)));
             });
+
+            services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<RestaurantDbContext>();

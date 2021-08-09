@@ -55,7 +55,8 @@ namespace Restaurant_API.Controllers
         }
         
         [HttpGet]
-        [Authorize(Policy = "HasNationality")]
+        // [Authorize(Policy = "HasNationality")]
+        [Authorize(Policy = "Atleast20")]
         public ActionResult<IEnumerable<RestaurantDto>> GetAll()
         {
             
