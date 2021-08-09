@@ -68,6 +68,7 @@ namespace Restaurant_API
             });
 
             services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+            services.AddScoped<IAuthorizationHandler, ResorceOperationRequirementHandler>();
 
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<RestaurantDbContext>();

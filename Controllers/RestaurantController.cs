@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant_API.Models;
@@ -26,7 +27,7 @@ namespace Restaurant_API.Controllers
             // if(!ModelState.IsValid)
             //     return BadRequest(ModelState);
 
-            _restaurantService.UpdateRestaurant(id, restaurantUpdateDto);
+            _restaurantService.UpdateRestaurant(id, restaurantUpdateDto, User);
 
             return Ok();
         }
@@ -34,7 +35,7 @@ namespace Restaurant_API.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
-            _restaurantService.Delete(id);
+            _restaurantService.Delete(id, User);
 
             return NoContent();
         }
@@ -48,8 +49,8 @@ namespace Restaurant_API.Controllers
             // {
             //     return BadRequest(ModelState);
             // }
-
-            int Id = _restaurantService.Create(dto);
+            var userId = User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            int Id = _restaurantService.Create(dto, int.Parse(userId));
 
             return Created($"/api/restaurant/{Id}", null);
         }
