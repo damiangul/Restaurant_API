@@ -27,7 +27,7 @@ namespace Restaurant_API.Controllers
             // if(!ModelState.IsValid)
             //     return BadRequest(ModelState);
 
-            _restaurantService.UpdateRestaurant(id, restaurantUpdateDto, User);
+            _restaurantService.UpdateRestaurant(id, restaurantUpdateDto);
 
             return Ok();
         }
@@ -35,7 +35,7 @@ namespace Restaurant_API.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
-            _restaurantService.Delete(id, User);
+            _restaurantService.Delete(id);
 
             return NoContent();
         }
@@ -50,7 +50,7 @@ namespace Restaurant_API.Controllers
             //     return BadRequest(ModelState);
             // }
             var userId = User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            int Id = _restaurantService.Create(dto, int.Parse(userId));
+            int Id = _restaurantService.Create(dto);
 
             return Created($"/api/restaurant/{Id}", null);
         }
