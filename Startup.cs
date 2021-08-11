@@ -100,6 +100,9 @@ namespace Restaurant_API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RestaurantSeeder restaurantSeeder)
         {
+            //Aplikacja bedzie w stanie serwować pliki z domyslnego folderu wwwroot.
+            app.UseStaticFiles();
+
             app.UseCors("FrontEndClient");
 
             restaurantSeeder.Seed();
